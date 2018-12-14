@@ -1,0 +1,50 @@
+constructor(props) {
+    super(props );
+    this.state = {
+      items: []
+    }
+  }
+
+  componentDidMount() {
+    fetch("https://swapi.co/api/people/")
+      .then(response => response.json())
+      .then(json => {
+        console.log(json);
+        this.setState({
+          items:[json]
+        });
+        console.log('123',this.state.items)
+
+      });
+    
+  }
+
+  render() {
+    let items = this.state.items;
+    return (
+      <div className="App">
+        <ul>
+          <ol>
+          { items.map(item=><li key={item.id}>
+         Name== {item.count}<br/>
+         Gender==  {item.gender}<br/>
+         Skin_color== {item.skin_color}<br/>
+         Hair_color== {item.hair_color}<br/>
+         Eye_color== {item.eye_color}<br/>
+         Birth_year== {item.birth_year}<br/>
+         Height== {item.height}<br/>
+         Mass== {item.mass}<br/>
+         Homeworld== {item.homeworld}<br/>
+         Films== {item.films}<br/>
+         Species== {item.species}<br/>
+         Vehicles== {item.vehicles}<br/>
+         Starships== {item.starships}<br/>
+         Created== {item.created}<br/>
+         Edited== {item.edited}<br/>
+         Url== {item.url}<br/>
+          </li>)}
+          </ol>
+        </ul>
+      </div>
+    );
+  }
